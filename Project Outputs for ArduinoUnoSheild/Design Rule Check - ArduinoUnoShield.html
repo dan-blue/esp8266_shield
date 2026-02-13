@@ -1,0 +1,415 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 9em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD22\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">2/4/2026</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">10:49:09 AM</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:00</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\danie\Documents\ENGE420\esp8266_shield\ArduinoUnoShield.PcbDoc" class="file"><acronym title="C:\Users\danie\Documents\ENGE420\esp8266_shield\ArduinoUnoShield.PcbDoc">C:\Users\danie\Documents\ENGE420\esp8266_shield\ArduinoUnoShield.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">1</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Waived Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">17</td></tr>
+</table>
+</td>
+</table><a name="IDA4ENCIQS1NOSKIKBQ1QQ2J54FN2ENOWR45XJGMFUCA00ABB5LUZK"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDFLJC5MN1A203OQZTQU0M2HCXYJGS4DG2WMKT22ODZSHXCPO3EDXO">Clearance Constraint (Gap=6mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDJTGJZQORTK45BPAVD2CKYE4LZERWIEICLANYA0J5MJZLEJCVWMWG">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDJTYB3XMZYU3XFMT13DJ4OX3YYPCQ0MOIGEMRYVIUDEBQFEEWOTXO">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">1</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDGLPN1KBIYTHZHBAVE0PVMLSA3LPLBQLNOUCI2FIQNEPSFEWR3L3E">Width Constraint (Min=10mil) (Max=20mil) (Preferred=15mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDT4FF132POSRIGC3Q1JM5YNUP3GWSYQFE40BDLCLCA1ZYSJYGOPLN">Power Plane Connect Rule(Relief Connect )(Expansion=20mil) (Conductor Width=10mil) (Air Gap=10mil) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID0EYH1WB10R5BRK2B2K1DQN4LOEUP1K1XTKD4JOUHMXEG1YZNDCG">Hole Size Constraint (Min=1mil) (Max=150mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDKZXHVWRPFPES0J3ZKF4M22KOFYUDI5HMYYZ0CGBCK4VQAUHDNMM">Hole To Hole Clearance (Gap=10mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDQI40G1HQUNJAE3BAIBBFWW1SOCMR4PSKKVAAZAEK003OSS4IOFCJ">Minimum Solder Mask Sliver (Gap=10mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDTAH3BUWLDU4FNRBOU54NH5T0NKJ1A2TY050MI2DN4CW1Q3ELE1UL">Silk To Solder Mask (Clearance=10mil) (IsPad),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID0SOUAEAOVQZ3IFSNPAZFNGXW4GD3145PFUMXDQBSNZUFGYCRFJSJ">Silk to Silk (Clearance=10mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDTGGEF41E55CQDXMSXUWQRQA41BHO4CXCRTS3ZOOVMBDWQDU4RCRF">Net Antennae (Tolerance=0mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDLGJRN1OKKKZ2GGTUF1RSAUO5SOFLCG1ONSCLZFLPXQ4GDCXFTPUH">Height Constraint (Min=0mil) (Max=1000mil) (Prefered=500mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">1</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Waived Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDAVPEIN2RWETCP3VBJ1CWUAXH1PKZ1MJZHGRIW5IN21K2KLVDYWFM">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">1</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDMTIMBFNDRVB4ICN3MKQA014PVGU1E1PXHWKNSXBRFSVHQ1TCSXCI">Minimum Solder Mask Sliver (Gap=10mil) (All),(All)</a></td>
+<td class="column2">2</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDI4W0JSRLT1B3MHPHW3DLZGSKCCVWPIM1NOQE5ABMT21BBKN24TMI">Silk To Solder Mask (Clearance=10mil) (IsPad),(All)</a></td>
+<td class="column2">14</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">17</td>
+</tr>
+</table><br><a name="IDOHTT34OMAGLBKICROZRENEOKIFJ2ZDD5RQ5NUDOIHQAPWLCS1HRK"><h2>Rule Violations</h2></a><a name="IDJTYB3XMZYU3XFMT13DJ4OX3YYPCQ0MOIGEMRYVIUDEBQFEEWOTXO"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Un-Routed Net Constraint ( (All) )</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\danie\Documents\ENGE420\esp8266_shield\ArduinoUnoShield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1200mil|Location2.X=3900mil|Location1.Y=1230mil|Location2.Y=3330mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\danie\Documents\ENGE420\esp8266_shield\ArduinoUnoShield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1200mil|Location2.X=3900mil|Location1.Y=1230mil|Location2.Y=3330mil|Absolute=True">Un-Routed Net Constraint: Polygon  (NONET_L02_P000) on Bottom Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDHJLBMPBRHNICCYXHKEDJ350JPGW520ZJRWBTVJONID1ZIVTCHJTE"><h2>Waived Violations</h2></a><a name="IDAVPEIN2RWETCP3VBJ1CWUAXH1PKZ1MJZHGRIW5IN21K2KLVDYWFM"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="waived">Un-Routed Net Constraint ( (All) )</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\danie\Documents\ENGE420\esp8266_shield\ArduinoUnoShield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2206mil|Location2.X=2352.149mil|Location1.Y=1857.851mil|Location2.Y=3264mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\danie\Documents\ENGE420\esp8266_shield\ArduinoUnoShield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2206mil|Location2.X=2352.149mil|Location1.Y=1857.851mil|Location2.Y=3264mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad IOH1-7(1040mil,2000mil) on Multi-Layer And Pad U1-1(1105.826mil,650.552mil) on Top Layer </acronym></a><br>Waived by Curious Engineer at 2/3/2026 1:41:29 AM<br>Its all with the ground of the arduino, so this doesn't matter....</td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDMTIMBFNDRVB4ICN3MKQA014PVGU1E1PXHWKNSXBRFSVHQ1TCSXCI"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="waived">Minimum Solder Mask Sliver (Gap=10mil) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\danie\Documents\ENGE420\esp8266_shield\ArduinoUnoShield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2904.375mil|Location2.X=2915.625mil|Location1.Y=1648.722mil|Location2.Y=1659.972mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\danie\Documents\ENGE420\esp8266_shield\ArduinoUnoShield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2904.375mil|Location2.X=2915.625mil|Location1.Y=1648.722mil|Location2.Y=1659.972mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (9.715mil &lt; 10mil) Between Pad C1-1(1676.536mil,450mil) on Top Layer And Pad C1-2(1743.464mil,450mil) on Top Layer [Top Solder] Mask Sliver [9.715mil]</acronym></a><br>Waived by Curious Engineer at 2/3/2026 1:38:36 AM<br>Due to the part, not routing, should be fine</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\danie\Documents\ENGE420\esp8266_shield\ArduinoUnoShield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2710.91mil|Location2.X=2722.16mil|Location1.Y=1700.028mil|Location2.Y=1711.278mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\danie\Documents\ENGE420\esp8266_shield\ArduinoUnoShield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2710.91mil|Location2.X=2722.16mil|Location1.Y=1700.028mil|Location2.Y=1711.278mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (9.717mil &lt; 10mil) Between Pad C2-1(1550mil,450mil) on Top Layer And Pad C2-2(1483.07mil,450mil) on Top Layer [Top Solder] Mask Sliver [9.717mil]</acronym></a><br>Waived by Curious Engineer at 2/3/2026 1:38:36 AM<br>Due to the part, not routing, should be fine</td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDI4W0JSRLT1B3MHPHW3DLZGSKCCVWPIM1NOQE5ABMT21BBKN24TMI"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="waived">Silk To Solder Mask (Clearance=10mil) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\danie\Documents\ENGE420\esp8266_shield\ArduinoUnoShield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3699.887mil|Location2.X=3711.137mil|Location1.Y=2382.399mil|Location2.Y=2393.649mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\danie\Documents\ENGE420\esp8266_shield\ArduinoUnoShield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3699.887mil|Location2.X=3711.137mil|Location1.Y=2382.399mil|Location2.Y=2393.649mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.984mil &lt; 10mil) Between Pad ICSP1-1(2505.512mil,1198.032mil) on Multi-Layer And Track (2455.512mil,1148.032mil)(2555.512mil,1148.032mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [9.984mil]</acronym></a><br>Waived by Curious Engineer at 2/3/2026 1:38:00 AM<br>it be like that before, it was in the template, so idk</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\danie\Documents\ENGE420\esp8266_shield\ArduinoUnoShield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3659.879mil|Location2.X=3671.129mil|Location1.Y=2422.407mil|Location2.Y=2433.657mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\danie\Documents\ENGE420\esp8266_shield\ArduinoUnoShield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3659.879mil|Location2.X=3671.129mil|Location1.Y=2422.407mil|Location2.Y=2433.657mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.984mil &lt; 10mil) Between Pad ICSP1-1(2505.512mil,1198.032mil) on Multi-Layer And Track (2455.512mil,948.032mil)(2455.512mil,1223.032mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [9.984mil]</acronym></a><br>Waived by Curious Engineer at 2/3/2026 1:38:00 AM<br>it be like that before, it was in the template, so idk</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\danie\Documents\ENGE420\esp8266_shield\ArduinoUnoShield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3699.887mil|Location2.X=3711.137mil|Location1.Y=2462.415mil|Location2.Y=2473.665mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\danie\Documents\ENGE420\esp8266_shield\ArduinoUnoShield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3699.887mil|Location2.X=3711.137mil|Location1.Y=2462.415mil|Location2.Y=2473.665mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.984mil &lt; 10mil) Between Pad ICSP1-1(2505.512mil,1198.032mil) on Multi-Layer And Track (2480.512mil,1248.032mil)(2655.512mil,1248.032mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [9.984mil]</acronym></a><br>Waived by Curious Engineer at 2/3/2026 1:38:00 AM<br>it be like that before, it was in the template, so idk</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\danie\Documents\ENGE420\esp8266_shield\ArduinoUnoShield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3739.895mil|Location2.X=3751.145mil|Location1.Y=2422.407mil|Location2.Y=2433.657mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\danie\Documents\ENGE420\esp8266_shield\ArduinoUnoShield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3739.895mil|Location2.X=3751.145mil|Location1.Y=2422.407mil|Location2.Y=2433.657mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.984mil &lt; 10mil) Between Pad ICSP1-1(2505.512mil,1198.032mil) on Multi-Layer And Track (2555.512mil,1148.032mil)(2555.512mil,1248.032mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [9.984mil]</acronym></a><br>Waived by Curious Engineer at 2/3/2026 1:38:00 AM<br>it be like that before, it was in the template, so idk</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\danie\Documents\ENGE420\esp8266_shield\ArduinoUnoShield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3799.887mil|Location2.X=3811.137mil|Location1.Y=2462.415mil|Location2.Y=2473.665mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\danie\Documents\ENGE420\esp8266_shield\ArduinoUnoShield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3799.887mil|Location2.X=3811.137mil|Location1.Y=2462.415mil|Location2.Y=2473.665mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.984mil &lt; 10mil) Between Pad ICSP1-2(2605.512mil,1198.032mil) on Multi-Layer And Track (2480.512mil,1248.032mil)(2655.512mil,1248.032mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [9.984mil]</acronym></a><br>Waived by Curious Engineer at 2/3/2026 1:38:00 AM<br>it be like that before, it was in the template, so idk</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\danie\Documents\ENGE420\esp8266_shield\ArduinoUnoShield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3759.879mil|Location2.X=3771.129mil|Location1.Y=2422.407mil|Location2.Y=2433.657mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\danie\Documents\ENGE420\esp8266_shield\ArduinoUnoShield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3759.879mil|Location2.X=3771.129mil|Location1.Y=2422.407mil|Location2.Y=2433.657mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.984mil &lt; 10mil) Between Pad ICSP1-2(2605.512mil,1198.032mil) on Multi-Layer And Track (2555.512mil,1148.032mil)(2555.512mil,1248.032mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [9.984mil]</acronym></a><br>Waived by Curious Engineer at 2/3/2026 1:38:00 AM<br>it be like that before, it was in the template, so idk</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\danie\Documents\ENGE420\esp8266_shield\ArduinoUnoShield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3839.895mil|Location2.X=3851.145mil|Location1.Y=2422.407mil|Location2.Y=2433.657mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\danie\Documents\ENGE420\esp8266_shield\ArduinoUnoShield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3839.895mil|Location2.X=3851.145mil|Location1.Y=2422.407mil|Location2.Y=2433.657mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.984mil &lt; 10mil) Between Pad ICSP1-2(2605.512mil,1198.032mil) on Multi-Layer And Track (2655.512mil,948.032mil)(2655.512mil,1248.032mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [9.984mil]</acronym></a><br>Waived by Curious Engineer at 2/3/2026 1:38:00 AM<br>it be like that before, it was in the template, so idk</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\danie\Documents\ENGE420\esp8266_shield\ArduinoUnoShield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3699.887mil|Location2.X=3711.137mil|Location1.Y=2362.415mil|Location2.Y=2373.665mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\danie\Documents\ENGE420\esp8266_shield\ArduinoUnoShield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3699.887mil|Location2.X=3711.137mil|Location1.Y=2362.415mil|Location2.Y=2373.665mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.984mil &lt; 10mil) Between Pad ICSP1-3(2505.512mil,1098.032mil) on Multi-Layer And Track (2455.512mil,1148.032mil)(2555.512mil,1148.032mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [9.984mil]</acronym></a><br>Waived by Curious Engineer at 2/3/2026 1:38:00 AM<br>it be like that before, it was in the template, so idk</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\danie\Documents\ENGE420\esp8266_shield\ArduinoUnoShield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3659.879mil|Location2.X=3671.129mil|Location1.Y=2322.407mil|Location2.Y=2333.657mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\danie\Documents\ENGE420\esp8266_shield\ArduinoUnoShield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3659.879mil|Location2.X=3671.129mil|Location1.Y=2322.407mil|Location2.Y=2333.657mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.984mil &lt; 10mil) Between Pad ICSP1-3(2505.512mil,1098.032mil) on Multi-Layer And Track (2455.512mil,948.032mil)(2455.512mil,1223.032mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [9.984mil]</acronym></a><br>Waived by Curious Engineer at 2/3/2026 1:38:00 AM<br>it be like that before, it was in the template, so idk</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\danie\Documents\ENGE420\esp8266_shield\ArduinoUnoShield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3839.895mil|Location2.X=3851.145mil|Location1.Y=2322.407mil|Location2.Y=2333.657mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\danie\Documents\ENGE420\esp8266_shield\ArduinoUnoShield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3839.895mil|Location2.X=3851.145mil|Location1.Y=2322.407mil|Location2.Y=2333.657mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.984mil &lt; 10mil) Between Pad ICSP1-4(2605.512mil,1098.032mil) on Multi-Layer And Track (2655.512mil,948.032mil)(2655.512mil,1248.032mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [9.984mil]</acronym></a><br>Waived by Curious Engineer at 2/3/2026 1:38:00 AM<br>it be like that before, it was in the template, so idk</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\danie\Documents\ENGE420\esp8266_shield\ArduinoUnoShield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3659.879mil|Location2.X=3671.129mil|Location1.Y=2222.407mil|Location2.Y=2233.657mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\danie\Documents\ENGE420\esp8266_shield\ArduinoUnoShield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3659.879mil|Location2.X=3671.129mil|Location1.Y=2222.407mil|Location2.Y=2233.657mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.984mil &lt; 10mil) Between Pad ICSP1-5(2505.512mil,998.032mil) on Multi-Layer And Track (2455.512mil,948.032mil)(2455.512mil,1223.032mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [9.984mil]</acronym></a><br>Waived by Curious Engineer at 2/3/2026 1:38:00 AM<br>it be like that before, it was in the template, so idk</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\danie\Documents\ENGE420\esp8266_shield\ArduinoUnoShield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3699.887mil|Location2.X=3711.137mil|Location1.Y=2182.399mil|Location2.Y=2193.649mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\danie\Documents\ENGE420\esp8266_shield\ArduinoUnoShield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3699.887mil|Location2.X=3711.137mil|Location1.Y=2182.399mil|Location2.Y=2193.649mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.984mil &lt; 10mil) Between Pad ICSP1-5(2505.512mil,998.032mil) on Multi-Layer And Track (2455.512mil,948.032mil)(2655.512mil,948.032mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [9.984mil]</acronym></a><br>Waived by Curious Engineer at 2/3/2026 1:38:00 AM<br>it be like that before, it was in the template, so idk</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\danie\Documents\ENGE420\esp8266_shield\ArduinoUnoShield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3799.887mil|Location2.X=3811.137mil|Location1.Y=2182.399mil|Location2.Y=2193.649mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\danie\Documents\ENGE420\esp8266_shield\ArduinoUnoShield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3799.887mil|Location2.X=3811.137mil|Location1.Y=2182.399mil|Location2.Y=2193.649mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.984mil &lt; 10mil) Between Pad ICSP1-6(2605.512mil,998.032mil) on Multi-Layer And Track (2455.512mil,948.032mil)(2655.512mil,948.032mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [9.984mil]</acronym></a><br>Waived by Curious Engineer at 2/3/2026 1:38:00 AM<br>it be like that before, it was in the template, so idk</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\danie\Documents\ENGE420\esp8266_shield\ArduinoUnoShield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3839.895mil|Location2.X=3851.145mil|Location1.Y=2222.407mil|Location2.Y=2233.657mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\danie\Documents\ENGE420\esp8266_shield\ArduinoUnoShield.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3839.895mil|Location2.X=3851.145mil|Location1.Y=2222.407mil|Location2.Y=2233.657mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.984mil &lt; 10mil) Between Pad ICSP1-6(2605.512mil,998.032mil) on Multi-Layer And Track (2655.512mil,948.032mil)(2655.512mil,1248.032mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [9.984mil]</acronym></a><br>Waived by Curious Engineer at 2/3/2026 1:38:00 AM<br>it be like that before, it was in the template, so idk</td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>

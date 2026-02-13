@@ -1,0 +1,4 @@
+Remove Pin=R9-1 From Net=3V3
+Remove Pin=R10-2 From Net=3V3
+Remove Pin=R11-2 From Net=3V3
+Remove Pin=R12-1 From Net=IOREF

@@ -1,0 +1,12 @@
+Output: NC Drill Files
+Type  : NC Drill
+From  : Project [esp8266_shield.PrjPcb]
+   Generated File[ArduinoUnoShield.TXT]
+   Generated File[ArduinoUnoShield.LDP]
+   Generated File[ArduinoUnoShield.DRR]
+
+
+Files Generated   : 3
+Documents Printed : 0
+
+Finished Output Generation At 1:52:59 AM On 2/3/2026
